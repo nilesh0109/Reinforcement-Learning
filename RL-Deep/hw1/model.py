@@ -172,42 +172,30 @@ class Model:
             self.mse_loss = graph.get_tensor_by_name("regularized_loss:0")
             self.optimizer = graph.get_operation_by_name("Adam")
             self.global_step = graph.get_tensor_by_name("global_step:0")
-
+            return ckpt
         else:
             print('No Checkpoint to restore graph')
+            return None
 
 
-    def predict_helper(self, x, op):
+    def predict_helper(self, op):
         def predict(data):
             sess=tf.get_default_session()
-            return sess.run(op, feed_dict={x: data})
+            return sess.run(op, feed_dict={self.x: data})
         return predict
 
     
     def load_trained_policy(self, env_name, lr_type='BC'):
-        CKPT_DIR='tmp/'+env_name+'/'+lr_type+'/'
-        CKPT_FILE = 'model.ckpt'
-        sess = tf.get_default_session()
-        ckpt = tf.train.get_checkpoint_state(os.path.dirname(CKPT_DIR))
-        if ckpt and ckpt.model_checkpoint_path:
-            imported_meta = tf.train.import_meta_graph(ckpt.model_checkpoint_path+'.meta')
-           
-            graph = tf.get_default_graph()
+        ckpt = self.load_graph_from_ckpt(env_name, lr_type)
+        if ckpt:
+            sess = tf.get_default_session()
             saver = tf.train.Saver()
             saver.restore(sess, ckpt.model_checkpoint_path)
             #get the placeholder and operation to evaluate
-            x = graph.get_tensor_by_name("input_placeholder:0")
-            op = graph.get_tensor_by_name("prediction:0")
-            return self.predict_helper(x, op)
+            op = tf.get_default_graph().get_tensor_by_name("prediction:0")
+            return self.predict_helper(op)
         else:
             return None
-
-            
-
-
-                    
-
-
 
 
 
