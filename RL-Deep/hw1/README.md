@@ -28,16 +28,16 @@ The name of the pickle file corresponds to the name of the gym environment.
 
 
 #### ----UPDATE ----
-
+###### Behavior Cloning Results
 For the Imitiation Learning, i have used a 4 layer feedforward network with 100 units in each hidden layer and ReLu as activation function.
 
-Figure shown below, comapares the result of policy obtained through behavior cloning and expert policy on all the 6 tasks for 20 episodes.
+Figure shown below, compares the result of policy obtained through behavior cloning and expert policy on all the 6 tasks for 20 episodes.
 ![Behavior cloning Result](https://github.com/nilesh0109/RL-assignments/blob/master/RL-Deep/hw1/Results/Behaviour_cloning/Behavior_cloning_20000_epochs.png)
- Clearly, BC is able to imitate 2 out of 6 environments very well.
+ BC is able to imitate 2 out of 6 environments very well.
  The BC policy is trained with 20 rollouts of expert policy and is trained to 20,000 epochs for all tasks
  
- 
+###### DAgger Results
 Figure shown below, comapares the result of policy obtained through DAgger, behavior cloning and expert policy on all the 6 tasks for 20 episodes.
 ![Behavior cloning Result](https://github.com/nilesh0109/RL-assignments/blob/master/RL-Deep/hw1/Results/Imitation_Learning/plot.png)
- Clearly, DAgger is outperforming BC on all the 6 tasks but is even able to reach close to expert policy in all except one task(Humanoid-v2).
+ Clearly, DAgger is outperforming BC on all the 6 tasks and is even reaching close to expert policy asymptotically in all except one task(Humanoid-v2).
  The DAgger policy is trained initially for 2000 epochs with 20 rollouts of expert policy, then the training data is enhanced succesively for 9 more loops(i.e. 10 in total) with 20 rollout steps of DAgger policy.
