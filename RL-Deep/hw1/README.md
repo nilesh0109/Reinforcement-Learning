@@ -26,6 +26,11 @@ In `experts/`, the provided expert policies are:
 
 The name of the pickle file corresponds to the name of the gym environment.
 
+### HOW TO RUN
+
+1. Run train.sh for training the desired Imitation Learning policy (bash train.sh)
+2. Run run.sh for producing the results via policy rollout in the desired environment. (bash run.sh)
+Please read the bash files run.sh and train.sh for available options
 
 #### ----UPDATE ----
 ###### Behavior Cloning Results
