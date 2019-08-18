@@ -27,11 +27,10 @@ In `experts/`, the provided expert policies are:
 The name of the pickle file corresponds to the name of the gym environment.
 
 
-----UPDATE RESULTS----
+#### ----UPDATE ----
 
 For the Imitiation Learning, i have used a 4 layer feedforward network with 100 units in each hidden layer and ReLu as activation function.
 
-Section 2.2
 Figure shown below, comapares the result of policy obtained through behavior cloning and expert policy on all the 6 tasks for 20 episodes.
 ![Behavior cloning Result](https://github.com/nilesh0109/RL-assignments/blob/master/RL-Deep/hw1/Results/Behaviour_cloning/Behavior_cloning_20000_epochs.png)
  Clearly, BC is able to imitate 2 out of 6 environments very well.
