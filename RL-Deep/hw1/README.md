@@ -25,3 +25,24 @@ In `experts/`, the provided expert policies are:
 * Walker2d-v2.pkl
 
 The name of the pickle file corresponds to the name of the gym environment.
+
+### HOW TO RUN
+
+1. Run train.sh for training the desired Imitation Learning policy (bash train.sh)
+2. Run run.sh for producing the results via policy rollout in the desired environment. (bash run.sh)
+Please read the bash files run.sh and train.sh for available options
+
+#### ----UPDATE ----
+###### Behavior Cloning Results
+For the Imitiation Learning, i have used a 4 layer feedforward network with 100 units in each hidden layer and ReLu as activation function.
+
+Figure shown below, compares the result of policy obtained through behavior cloning and expert policy on all the 6 tasks for 20 episodes.
+![Behavior cloning Result](https://github.com/nilesh0109/RL-assignments/blob/master/RL-Deep/hw1/Results/Behaviour_cloning/Behavior_cloning_20000_epochs.png)
+ BC is able to imitate 2 out of 6 environments very well.
+ The BC policy is trained with 20 rollouts of expert policy and is trained to 20,000 epochs for all tasks
+ 
+###### DAgger Results
+Figure shown below, comapares the result of policy obtained through DAgger, behavior cloning and expert policy on all the 6 tasks for 20 episodes.
+![Behavior cloning Result](https://github.com/nilesh0109/RL-assignments/blob/master/RL-Deep/hw1/Results/Imitation_Learning/plot.png)
+ Clearly, DAgger is outperforming BC on all the 6 tasks and is even reaching close to expert policy asymptotically in all except one task(Humanoid-v2).
+ The DAgger policy is trained initially for 2000 epochs with 20 rollouts of expert policy, then the training data is enhanced succesively for 9 more loops(i.e. 10 in total) with 20 rollout steps of DAgger policy.
