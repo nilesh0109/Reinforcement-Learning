@@ -90,10 +90,11 @@ class Model:
             if activation is not None: 
                 inp = activation(out)
             
-            regularized_loss += tf.nn.l2_loss(weights[w])
+            #regularized_loss += tf.nn.l2_loss(weights[w])
         
         self.pred = tf.identity(out, name='prediction')
-        self.mse_loss = tf.math.add(tf.losses.mean_squared_error(self.y, self.pred), self.reg_lambda * regularized_loss, name='regularized_loss')
+        #self.mse_loss = tf.math.add(tf.losses.mean_squared_error(self.y, self.pred), self.reg_lambda * regularized_loss, name='regularized_loss')
+        self.mse_loss = tf.identity(tf.losses.mean_squared_error(self.y, self.pred), name='mse_loss')
         
         self.global_step = tf.Variable(0, dtype=tf.int32, trainable=False, name='global_step')
         self.optimizer = tf.train.AdamOptimizer(self.lr_rate).minimize(self.mse_loss, global_step=self.global_step)
@@ -169,7 +170,8 @@ class Model:
             graph =  tf.get_default_graph()
             self.x = graph.get_tensor_by_name("input_placeholder:0")
             self.y = graph.get_tensor_by_name("output_placeholder:0")
-            self.mse_loss = graph.get_tensor_by_name("regularized_loss:0")
+            #self.mse_loss = graph.get_tensor_by_name("regularized_loss:0")
+            self.mse_loss = graph.get_tensor_by_name("mse_loss:0")
             self.optimizer = graph.get_operation_by_name("Adam")
             self.global_step = graph.get_tensor_by_name("global_step:0")
             return ckpt
