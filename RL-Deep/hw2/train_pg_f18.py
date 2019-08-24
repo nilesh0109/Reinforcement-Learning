@@ -184,8 +184,7 @@ class Agent(object):
         else:
             sy_mean, sy_logstd = policy_parameters
             # YOUR_CODE_HERE
-            sy_sampled_ac = []
-            sy_sampled_ac.append(tf.random.normal([1], sy_mean, sy_logstd, name='sample_act'))
+            sy_sampled_ac= sy_mean + tf.exp(sy_logstd) * tf.random_normal(tf.shape(sy_mean))
         return sy_sampled_ac
 
     #========================================================================================#
@@ -313,11 +312,10 @@ class Agent(object):
             #====================================================================================#
             #                           ----------PROBLEM 3----------
             #====================================================================================#
-           #with self.sess.as_default() as sess:
+
             self.sess.run(tf.compat.v1.global_variables_initializer())
-            sample_action = self.sess.run( self.sy_sampled_ac, feed_dict={self.sy_ob_no: [ob]})
-            ac =  sample_action[0] # YOUR CODE HERE
-            
+            sample_action = self.sess.run( self.sy_sampled_ac, feed_dict={self.sy_ob_no: ob.reshape(1, -1)})
+            ac=  sample_action[0]
             ac = ac[0]
             acs.append(ac)
             ob, rew, done, _ = env.step(ac)

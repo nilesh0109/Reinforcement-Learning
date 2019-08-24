@@ -49,13 +49,19 @@ the --legend flag and then provide a title for each logdir.
 """
 
 def plot_data(data, value="AverageReturn"):
+
     if isinstance(data, list):
         data = pd.concat(data, ignore_index=True)
+    
+    plot_save_dir = 'plots/'+data['Condition'][0]+'/'
+    plot_save_fileName = value+'.png'
 
     sns.set(style="darkgrid", font_scale=1.5)
     sns.tsplot(data=data, time="Iteration", value=value, unit="Unit", condition="Condition")
     #plt.legend(loc='best').draggable()
     plt.legend(loc='best')
+    os.makedirs(os.path.dirname(plot_save_dir), exist_ok=True)
+    plt.savefig(plot_save_dir+plot_save_fileName)
     plt.show()
 
 
