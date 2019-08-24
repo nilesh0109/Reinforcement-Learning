@@ -17,9 +17,11 @@ See the [HW2 PDF](http://rail.eecs.berkeley.edu/deeprlcourse/static/homeworks/hw
 
 
 --- Update(After Solution):
-
-Derivation 2A)![Alt sol 2A](https://github.com/nilesh0109/Reinforcement-Learning/blob/master/RL-Deep/hw2/sol_2a.svg)
-
-Derivation 2B)![Alt sol 2A](https://github.com/nilesh0109/Reinforcement-Learning/blob/master/RL-Deep/hw2/sol_2b.svg)
+Derivation 2A)
+![Alt sol 2A](https://github.com/nilesh0109/Reinforcement-Learning/blob/master/RL-Deep/hw2/sol_2a.svg)
+<br>
+Derivation 2B)
+![Alt sol 2A](https://github.com/nilesh0109/Reinforcement-Learning/blob/master/RL-Deep/hw2/sol_2b.svg)
+<br>
 Reference taken from https://github.com/xuwd11/cs294-112_hws/tree/master/hw2
 
