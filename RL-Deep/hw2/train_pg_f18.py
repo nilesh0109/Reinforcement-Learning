@@ -215,9 +215,10 @@ class Agent(object):
         """
         if self.discrete:
             sy_logits_na = policy_parameters
-            sy_gather_idx = tf.stack([tf.range(tf.shape(sy_ac_na)[0]), sy_ac_na], axis=1)
+            #sy_gather_idx = tf.stack([tf.range(tf.shape(sy_ac_na)[0]), sy_ac_na], axis=1)
             # YOUR_CODE_HERE
-            sy_logprob_n = tf.compat.v1.log(tf.gather_nd(sy_logits_na, sy_gather_idx))
+            #sy_logprob_n = tf.compat.v1.log(tf.gather_nd(sy_logits_na, sy_gather_idx))
+            sy_logprob_n =  tf.compat.v1.nn.sparse_softmax_cross_entropy_with_logits(labels=sy_ac_na, logits=sy_logits_na)
         else:
             sy_mean, sy_logstd = policy_parameters
             # YOUR_CODE_HERE
